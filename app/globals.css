@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  background-color: #F5F9F7;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cfe6db;
+  border-radius: 999px;
+}
+
+/* Smooth transition for sidebar active items */
+.sidebar-link {
+  transition: background 0.15s ease, color 0.15s ease;
+}

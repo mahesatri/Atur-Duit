@@ -1,0 +1,32 @@
+{
+  "name": "aturduit-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AturDuit - Aplikasi manajemen keuangan pribadi (Next.js + Supabase)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "zod": "^3.23.8",
+    "bcryptjs": "^2.4.3",
+    "recharts": "^2.12.7",
+    "lucide-react": "^0.453.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "typescript": "^5.5.0",
+    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.41",
+    "autoprefixer": "^10.4.20"
+  }
+}
