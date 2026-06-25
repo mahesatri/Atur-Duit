@@ -77,13 +77,6 @@ export default function RegisterPage() {
               icon={<Lock size={20} />}
               error={state?.errors?.password?.[0]}
             />
-            <InputField
-              name="password"
-              type="password"
-              placeholder="Password"
-              icon={<Lock size={20} />}
-              error={state?.errors?.password?.[0]}
-            />
 
             <InputField
               name="confirmPassword"
