@@ -19,7 +19,15 @@ export default function TransactionForm({
   const [state, formAction] = useActionState(addTransactionAction, undefined);
   const [type, setType] = useState<"income" | "expense">("expense");
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const [amountDigits, setAmountDigits] = useState(""); // angka mentah, dikirim ke server
+  const [amountDisplay, setAmountDisplay] = useState(""); // versi "150.000", cuma buat tampilan
   const router = useRouter();
+
+  function handleAmountChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const digitsOnly = e.target.value.replace(/\D/g, ""); // buang semua selain angka
+    setAmountDigits(digitsOnly);
+    setAmountDisplay(digitsOnly ? new Intl.NumberFormat("id-ID").format(Number(digitsOnly)) : "");
+  }
 
   return (
     <div className="min-h-screen">
@@ -77,13 +85,17 @@ export default function TransactionForm({
             <div>
               <div className="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 shadow-card">
                 <DollarSign className="text-green shrink-0" size={20} />
+                {/* Input yang dilihat user: otomatis pakai titik ribuan, mis. 150.000 */}
                 <input
-                  name="amount"
-                  type="number"
-                  min="1"
+                  type="text"
+                  inputMode="numeric"
+                  value={amountDisplay}
+                  onChange={handleAmountChange}
                   placeholder="Jumlah (Rp)"
                   className="flex-1 bg-transparent outline-none text-textDark placeholder:text-textMuted text-base"
                 />
+                {/* Yang benar-benar dikirim ke server: angka mentah tanpa titik */}
+                <input type="hidden" name="amount" value={amountDigits} />
               </div>
               {state?.errors?.amount && (
                 <p className="mt-1.5 ml-1 text-xs text-expenseDeep">{state.errors.amount[0]}</p>

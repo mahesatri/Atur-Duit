@@ -25,6 +25,8 @@ export default function CategoriesClient({ categories }: { categories: CategoryR
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function startPress(cat: CategoryRow) {
+    // Kategori bawaan (user_id null, milik semua user) sengaja tidak boleh dihapus.
+    if (cat.user_id === null) return;
     pressTimer.current = setTimeout(() => {
       setDeleteTarget(cat);
     }, 500);
@@ -73,7 +75,7 @@ export default function CategoriesClient({ categories }: { categories: CategoryR
             onTouchEnd={cancelPress}
             className="bg-white rounded-3xl shadow-card p-5 flex flex-col items-center gap-3 select-none
               hover:shadow-floating hover:-translate-y-0.5 active:scale-95 transition-all duration-150 cursor-pointer text-left"
-            title="Klik untuk tambah transaksi · Tahan untuk hapus"
+            title={cat.user_id === null ? "Klik untuk tambah transaksi (kategori bawaan, tidak bisa dihapus)" : "Klik untuk tambah transaksi · Tahan untuk hapus"}
           >
             {/* Icon container mirip flutter */}
             <div className="w-14 h-14 rounded-2xl bg-iconBg flex items-center justify-center">
@@ -82,6 +84,9 @@ export default function CategoriesClient({ categories }: { categories: CategoryR
             <p className="text-textDark text-sm font-semibold text-center leading-tight line-clamp-2 w-full">
               {cat.name}
             </p>
+            {cat.user_id === null && (
+              <span className="text-[10px] text-textMuted bg-bg px-2 py-0.5 rounded-full">Bawaan</span>
+            )}
           </button>
         ))}
 
