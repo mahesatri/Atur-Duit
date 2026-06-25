@@ -77,6 +77,21 @@ export default function RegisterPage() {
               icon={<Lock size={20} />}
               error={state?.errors?.password?.[0]}
             />
+            <InputField
+              name="password"
+              type="password"
+              placeholder="Password"
+              icon={<Lock size={20} />}
+              error={state?.errors?.password?.[0]}
+            />
+
+            <InputField
+              name="confirmPassword"
+              type="password"
+              placeholder="Konfirmasi Password"
+              icon={<Lock size={20} />}
+              error={state?.errors?.confirmPassword?.[0]}
+            />
 
             <div className="pt-3">
               <SubmitButton>Daftar Sekarang</SubmitButton>
