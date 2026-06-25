@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+// @ts-ignore: CSS module import declaration handled by Next.js
 import "./globals.css";
 
 const roboto = Roboto({

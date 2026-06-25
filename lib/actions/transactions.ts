@@ -7,11 +7,7 @@ import { getSessionUserId } from "@/lib/session";
 import { transactionSchema } from "@/lib/validations";
 import type { FormState } from "@/lib/actions/auth";
 
-/**
- * Task: Core Feature — Server Action "Tambah Transaksi".
- * Dipanggil langsung dari <form action={addTransactionAction}>, tanpa endpoint
- * API terpisah. Validasi dilakukan dengan Zod .safeParse() (Task 2: Integritas Data).
- */
+
 export async function addTransactionAction(prevState: FormState, formData: FormData): Promise<FormState> {
   const userId = await getSessionUserId();
   if (!userId) redirect("/login");
@@ -97,11 +93,7 @@ export async function updateTransactionAction(
   redirect("/transactions");
 }
 
-/**
- * Task 4 (Kecepatan UX): dipanggil dari TransactionsList.tsx bersamaan dengan
- * useOptimistic, sehingga UI langsung menghilangkan item sebelum Server
- * Action ini selesai berjalan di background.
- */
+
 export async function deleteTransactionAction(id: string): Promise<{ success: boolean }> {
   const userId = await getSessionUserId();
   if (!userId) redirect("/login");
